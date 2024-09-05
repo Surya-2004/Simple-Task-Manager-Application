@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Task Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Remove Task</h1>
+    <form id="deleteForm">
+        Task number:
+        <input type="number" name="taskId" id="taskId" placeholder="Enter the task ID...">
+        <button type="submit">Delete</button>
+    </form>
+    <script>
+        document.getElementById("deleteForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+    
+            const taskId = document.getElementById("taskId").value; 
+    
+            const response = await fetch(`/tasks/${taskId}`, { 
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify({ taskId }) 
+            });
+    
+            try {
+                const result = await response.json();
+    
+                if (response.ok) {
+                    alert(result.message);
+                } else {
+                    alert("Server Error");
+                }
+            } catch (error) {
+                console.error("Error parsing JSON: ", error);
+                alert("Error deleting task!");
+            }
+        });
+    </script>
+    
+</body>
+</html>

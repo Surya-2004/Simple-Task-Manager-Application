@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Add Task</h1>
+    <form id="addForm">
+        Task:
+        <input type="text" name="task" id="task" placeholder="Enter the task name...">
+        Task description:
+        <textarea name="taskDescription" id="taskDescription" placeholder="Write a description about your task..."></textarea>
+        <button type="submit">Add</button>
+    </form>
+    <script>
+        document.getElementById("addForm").addEventListener("submit", async (e)=>{
+            e.preventDefault();
+
+            const task = document.getElementById("task").value;
+            const description = document.getElementById("taskDescription").value;
+
+            try{
+                const response = await fetch("/tasks", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'Application/json'
+                    },
+                    body: JSON.stringify({'task':task, 'description':description})
+                });
+
+                const result = await response.json();
+
+                if(response.ok){
+                    alert("Task added successfully!");
+                }else{
+                    alert("Error while adding task!");
+                }
+
+            }catch(error){
+                console.error("Server Error!");
+            }
+        });
+    </script>
+</body>
+</html>

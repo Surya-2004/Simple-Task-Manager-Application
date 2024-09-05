@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+    color:aliceblue;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.taskCard{
+    height: 150px;
+    width: 90%;
+    padding: 2.5% 5%;
+    margin: 5%;
+    border: 2px solid white;
+    display: flex;
+    gap: 2%;
+    border-radius: 21% 0% 21% 0%;
+    /* border-radius: -12%; */
+    box-shadow: 1px 1px 4px white;
+
+    &:hover{
+        scale: 1.03;
+        box-shadow: 2px 2px 7px white;
+    }
+}
+
+.taskName{
+    padding: 7% 0%;
+}
+
+.taskDescription{
+    padding: 7% 0%;
+}
+
+h1{
+    text-align: center;
+    padding: 2%;
+    text-decoration: underline;
+}
+

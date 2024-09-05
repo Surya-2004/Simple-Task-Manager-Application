@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="showTasks.css">
+    <title>Your Tasks Page</title>
+</head>
+
+<body>
+    <h1>Your Tasks</h1>
+    <span id="taskList">
+
+    </span>
+    <script>
+        fetch("/tasks", {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            }
+        }).then((response) => {
+            if (!response.ok) {
+                alert("Server Error!");
+            } else {
+                response.json()
+                    .then((result) => {
+                        const tasks = result.tasksArr;
+                        for(const task of tasks){
+                            createTaskCard(task);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error parsing JSON: ", error);
+                    });
+            }
+        })
+        .catch((error) => {
+            console.error("Error: ", error);
+        });
+
+        function createTaskCard(task){
+            console.log(task);
+            const taskList = document.getElementById("taskList");
+            const taskCard = document.createElement("div");
+            taskCard.classList.add("taskCard");
+            const taskName = document.createElement("h3");
+            taskName.classList.add("taskName");
+            const ruler = document.createElement("hr");
+            const taskDescription = document.createElement("p");
+            taskDescription.classList.add("taskDescription");
+            taskCard.appendChild(taskName);
+            taskCard.appendChild(ruler);
+            taskCard.appendChild(taskDescription);
+            taskName.innerText = task.task;
+            taskDescription.innerText = task.description;
+            taskList.appendChild(taskCard);
+        }
+    </script>
+    
+</body>
+
+</html>

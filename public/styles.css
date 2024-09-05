@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    gap: 50px;
+    background-color: black;
+    font-family: 'SUSE';
+    color:aliceblue;
+}
+
+.links{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(187, 187, 118);
+    color: black;
+    width: 150px;
+    height: 50px;
+
+    &:hover{
+        scale: 1.03;
+    }
+}
+
+form{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form input{
+    width: 350px;
+    height: 40px;
+}
+
+form textarea{
+    width: 350px;
+    height: 70px;
+}
+
+h1{
+    text-align: center;
+    text-decoration: underline;
+}
