@@ -3,13 +3,12 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Use environment port if available
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
