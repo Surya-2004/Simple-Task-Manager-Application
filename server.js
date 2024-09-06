@@ -35,7 +35,7 @@ const taskSchema = new mongoose.Schema({
 
 const Task = mongoose.model('Task', taskSchema);
 
-app.get('/tasks', async (req, res) => {
+app.get('https://simple-task-manager-application.vercel.app/tasks', async (req, res) => {
     try {
         const items = await Task.find().sort({ customid: 1 });
 
@@ -50,7 +50,7 @@ app.get('/tasks', async (req, res) => {
         res.status(500).json({ message: "Server Error", error: err.message });
     }
 });
-app.post('/tasks', async (req, res) => {
+app.post('https://simple-task-manager-application.vercel.app/tasks', async (req, res) => {
     try {
         const { task, description } = req.body;
         const counter = await Counter.findByIdAndUpdate(
@@ -68,7 +68,7 @@ app.post('/tasks', async (req, res) => {
     }
 });
 
-app.delete('/tasks/:id', async (req, res) => {
+app.delete('https://simple-task-manager-application.vercel.app/tasks/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const task = await Task.findOne({ customid: id });
