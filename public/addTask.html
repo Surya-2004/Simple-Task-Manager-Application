@@ -23,7 +23,7 @@
             const description = document.getElementById("taskDescription").value;
 
             try{
-                const response = await fetch("https://simple-task-manager-application.vercel.app/tasks", {
+                const response = await fetch("/tasks", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'Application/json'
