@@ -19,7 +19,7 @@
     
             const taskId = document.getElementById("taskId").value; 
     
-            const response = await fetch("/tasks/${taskId}", { 
+            const response = await fetch(`/tasks/${taskId}`, { 
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json' 
@@ -33,11 +33,11 @@
                 if (response.ok) {
                     alert(result.message);
                 } else {
-                    alert("Server Error");
+                    alert("Error deleting task!");
                 }
             } catch (error) {
                 console.error("Error parsing JSON: ", error);
-                alert("Error deleting task!");
+                alert("Server Error");
             }
         });
     </script>

@@ -26,8 +26,10 @@
                 response.json()
                     .then((result) => {
                         const tasks = result.tasksArr;
+                        let i = 1;
                         for(const task of tasks){
-                            createTaskCard(task);
+                            createTaskCard(task, i);
+                            i++;
                         }
                     })
                     .catch((error) => {
@@ -39,7 +41,7 @@
             console.error("Error: ", error);
         });
 
-        function createTaskCard(task){
+        function createTaskCard(task, num){
             console.log(task);
             const taskList = document.getElementById("taskList");
             const taskCard = document.createElement("div");
@@ -52,7 +54,7 @@
             taskCard.appendChild(taskName);
             taskCard.appendChild(ruler);
             taskCard.appendChild(taskDescription);
-            taskName.innerText = task.task;
+            taskName.innerText = num + ") " + task.task;
             taskDescription.innerText = task.description;
             taskList.appendChild(taskCard);
         }

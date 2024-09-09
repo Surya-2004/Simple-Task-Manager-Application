@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Task Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Remove Task</h1>
+    <form id="updateForm">
+        Task number:
+        <input type="number" name="taskId" id="taskId" placeholder="Enter the task ID...">
+        Task name:
+        <input type="text" name="task" id="task" placeholder="Enter the new task name...">
+        Task Description:
+        <textarea name="taskDescription" id="taskDescription"
+            placeholder="Enter the new task description..."></textarea>
+        <button type="submit">Update</button>
+    </form>
+    <script>
+        document.getElementById("updateForm").addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            const taskId = document.getElementById("taskId").value;
+            const task = document.getElementById("task").value;
+            const description = document.getElementById("taskDescription").value; // This should match the field name in the schema
+    
+            try {
+                const response = await fetch(`/tasks/${taskId}`, { // Correct interpolation with backticks
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ task, description }) // Correct field names
+                });
+    
+                if (response.ok) {
+                    alert("Task Updated Successfully");
+                } else {
+                    alert("Task was not updated");
+                }
+            } catch (error) {
+                alert("Server Error");
+                console.error("Update Error: ", error);
+            }
+        });
+    </script>    
+</body>
+
+</html>
